@@ -87,14 +87,52 @@
         <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
         <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block">MOUNTAIN VAULT</span>
       </a>
-      <nav class="hidden md:flex items-center gap-10 text-sm font-semibold uppercase tracking-wide text-gray-300">
+      <!-- Desktop nav — matches the real site's menu structure.
+           TODO (Asif/Mike to confirm): "Private Safe Deposit Box Storage", "Bulk Storage" and
+           "Bullion & Precious Metal" currently point to the About section on this one-page demo
+           since dedicated pages don't exist yet. "Pay Your Bill" currently points to the real
+           CRM login (mountainvaultcrm.com) — swap for the exact client-facing bill-pay URL once
+           you have it. -->
+      <nav class="hidden md:flex items-center gap-5 lg:gap-7 text-xs lg:text-sm font-semibold uppercase tracking-wide text-gray-300">
         <a href="index.html" class="text-gold">Home</a>
-        <a href="security.html" class="hover:text-white transition">Security</a>
+        <a href="index.html#about" class="hover:text-white transition whitespace-nowrap">Private Safe Deposit Box Storage</a>
+        <a href="index.html#about" class="hover:text-white transition whitespace-nowrap">Bulk Storage</a>
+        <a href="index.html#about" class="hover:text-white transition whitespace-nowrap">Bullion &amp; Precious Metal</a>
+        <a href="security.html" class="hover:text-white transition">SecurePlus</a>
+        <a href="https://mountainvaultcrm.com" class="hover:text-white transition whitespace-nowrap">Pay Your Bill</a>
         <a href="contact.html" class="hover:text-white transition">Contact</a>
       </nav>
-      <a href="contact.html" class="inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+      <div class="flex items-center gap-3">
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+        <!-- Mobile menu button — only visible below the md breakpoint -->
+        <button id="mobileMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" class="md:hidden inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
+
+  <!-- ===== MOBILE MENU OVERLAY ===== -->
+  <div id="mobileMenu" class="fixed inset-0 z-[100] bg-charcoal hidden flex-col md:hidden">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between w-full">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
+      </a>
+      <button id="mobileMenuClose" type="button" aria-label="Close menu" class="inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto flex flex-col px-6 py-4 gap-1 text-lg font-semibold uppercase tracking-wide text-gray-200">
+      <a href="index.html" class="py-4 border-b border-white/10 text-gold">Home</a>
+      <a href="index.html#about" class="py-4 border-b border-white/10 hover:text-white transition">Private Safe Deposit Box Storage</a>
+      <a href="index.html#about" class="py-4 border-b border-white/10 hover:text-white transition">Bulk Storage</a>
+      <a href="index.html#about" class="py-4 border-b border-white/10 hover:text-white transition">Bullion &amp; Precious Metal</a>
+      <a href="security.html" class="py-4 border-b border-white/10 hover:text-white transition">SecurePlus</a>
+      <a href="https://mountainvaultcrm.com" class="py-4 border-b border-white/10 hover:text-white transition">Pay Your Bill</a>
+      <a href="contact.html" class="py-4 border-b border-white/10 hover:text-white transition">Contact</a>
+      <a href="contact.html" class="mt-6 inline-flex items-center justify-center h-14 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm">Get a Quote</a>
+    </nav>
+  </div>
 
   <!-- ===== HERO (coins photo + glow CTA) ===== -->
   <section class="relative h-screen min-h-[640px] flex items-center overflow-hidden">
@@ -145,7 +183,7 @@
   </section>
 
   <!-- ===== ABOUT ===== -->
-  <section class="max-w-7xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-16 items-center">
+  <section id="about" class="max-w-7xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-16 items-center">
     <div class="reveal">
       <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-5">About Mountain Vault</div>
       <h2 class="text-3xl md:text-4xl font-extrabold text-white leading-tight">A Private Facility Built Around One Purpose: Keeping What's Yours Safe.</h2>
@@ -270,6 +308,30 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+  <script>
+    // Mobile menu open/close — the menu is a full-screen overlay (fixed inset-0)
+    // so it always covers the whole phone screen, no matter the page content behind it.
+    const mobileMenu = document.getElementById('mobileMenu');
+    const openBtn = document.getElementById('mobileMenuBtn');
+    const closeBtn = document.getElementById('mobileMenuClose');
+
+    function openMobileMenu() {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      openBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden'; // stop background from scrolling behind the menu
+    }
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    openBtn.addEventListener('click', openMobileMenu);
+    closeBtn.addEventListener('click', closeMobileMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
   </script>
 
 </body>
