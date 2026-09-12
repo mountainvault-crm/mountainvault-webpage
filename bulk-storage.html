@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bulk Storage | Mountain Vault</title>
+<meta name="description" content="Secure bulk storage in Phoenix, Arizona for collections, crated artwork, and oversized valuables too big for a bank.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { charcoal: '#111111', onyx: '#000000', gold: '#C9A227', steel: '#4A5568' },
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .text-gold { color: #C9A227; }
+  .bg-gold { background-color: #C9A227; }
+</style>
+</head>
+<body class="bg-charcoal text-gray-200 antialiased overflow-x-hidden">
+
+  <!-- ===== NAV ===== -->
+  <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
+        <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block">MOUNTAIN VAULT</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-5 lg:gap-7 text-xs lg:text-sm font-semibold uppercase tracking-wide text-gray-300">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="private-safe-deposit-box-storage.html" class="hover:text-white transition whitespace-nowrap">Private Safe Deposit Box Storage</a>
+        <a href="bulk-storage.html" class="text-gold whitespace-nowrap">Bulk Storage</a>
+        <a href="bullion-precious-metal.html" class="hover:text-white transition whitespace-nowrap">Bullion &amp; Precious Metal</a>
+        <a href="secureplus.html" class="hover:text-white transition">SecurePlus</a>
+        <a href="https://mountainvaultcrm.com" class="hover:text-white transition whitespace-nowrap">Pay Your Bill</a>
+        <a href="contact.html" class="hover:text-white transition">Contact</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+        <button id="mobileMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" class="md:hidden inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU OVERLAY ===== -->
+  <div id="mobileMenu" class="fixed inset-0 z-[100] bg-charcoal hidden flex-col md:hidden">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between w-full">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
+      </a>
+      <button id="mobileMenuClose" type="button" aria-label="Close menu" class="inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto flex flex-col px-6 py-4 gap-1 text-lg font-semibold uppercase tracking-wide text-gray-200">
+      <a href="index.html" class="py-4 border-b border-white/10 hover:text-white transition">Home</a>
+      <a href="private-safe-deposit-box-storage.html" class="py-4 border-b border-white/10 hover:text-white transition">Private Safe Deposit Box Storage</a>
+      <a href="bulk-storage.html" class="py-4 border-b border-white/10 text-gold">Bulk Storage</a>
+      <a href="bullion-precious-metal.html" class="py-4 border-b border-white/10 hover:text-white transition">Bullion &amp; Precious Metal</a>
+      <a href="secureplus.html" class="py-4 border-b border-white/10 hover:text-white transition">SecurePlus</a>
+      <a href="https://mountainvaultcrm.com" class="py-4 border-b border-white/10 hover:text-white transition">Pay Your Bill</a>
+      <a href="contact.html" class="py-4 border-b border-white/10 hover:text-white transition">Contact</a>
+      <a href="contact.html" class="mt-6 inline-flex items-center justify-center h-14 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm">Get a Quote</a>
+    </nav>
+  </div>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="pt-20 pb-16 border-b border-white/10 bg-black">
+    <div class="max-w-5xl mx-auto px-6 pt-16 reveal">
+      <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-5">Bulk Storage</div>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-3xl">Bulk Storage</h1>
+      <p class="mt-6 text-gray-400 text-lg max-w-2xl">For collections, crated artwork, and valuables too large for a bank — protected the same way every unit in our vault is.</p>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 py-20">
+    <div class="reveal">
+      <p class="text-gray-300 leading-relaxed text-lg">Collections, crated artwork, and other items too large or valuable for a bank or commercial storage unit — our bulk storage is built for exactly that, with the same 24-hour surveillance and security as every other unit in the facility.</p>
+    </div>
+  </section>
+  <section class="max-w-7xl mx-auto px-6 py-20">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="border border-white/10 rounded-sm p-6 reveal">
+        <svg class="w-7 h-7 text-gold mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <div class="text-sm font-bold text-white uppercase tracking-wide mb-2">Built Into a Mountain</div>
+        <p class="text-sm text-gray-400 leading-relaxed">Surrounded by steel, concrete, and rock — a theft-proof environment.</p>
+      </div>
+      <div class="border border-white/10 rounded-sm p-6 reveal">
+        <svg class="w-7 h-7 text-gold mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <div class="text-sm font-bold text-white uppercase tracking-wide mb-2">Catastrophe Protected</div>
+        <p class="text-sm text-gray-400 leading-relaxed">Shielded from earthquakes, flooding, fire, and electromagnetic pulse.</p>
+      </div>
+      <div class="border border-white/10 rounded-sm p-6 reveal">
+        <svg class="w-7 h-7 text-gold mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <div class="text-sm font-bold text-white uppercase tracking-wide mb-2">Climate Controlled</div>
+        <p class="text-sm text-gray-400 leading-relaxed">Consistent humidity and temperature protect every item in your unit.</p>
+      </div>
+      <div class="border border-white/10 rounded-sm p-6 reveal">
+        <svg class="w-7 h-7 text-gold mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        <div class="text-sm font-bold text-white uppercase tracking-wide mb-2">Armed Guards On Duty</div>
+        <p class="text-sm text-gray-400 leading-relaxed">Cutting-edge surveillance backed by trained, on-site security.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="bg-black border-t border-white/10 py-20">
+    <div class="max-w-4xl mx-auto px-6 text-center reveal">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Ready to Secure Your Valuables?</h2>
+      <p class="mt-4 text-gray-400">Talk to a vault specialist today — no obligation, no pressure.</p>
+      <div class="mt-8 flex flex-wrap gap-4 justify-center">
+        <a href="contact.html" class="inline-flex items-center justify-center h-14 px-9 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+        <a href="tel:6029439796" class="inline-flex items-center justify-center h-14 px-9 border border-white/30 text-white text-sm font-bold uppercase tracking-wide rounded-sm hover:border-white transition">Call 602-943-9796</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black border-t border-white/10 pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-9 w-auto">
+          <span class="text-base font-extrabold text-white">MOUNTAIN VAULT</span>
+        </div>
+        <p class="text-sm text-gray-500 leading-relaxed max-w-xs">Mountain Vault: Secure Storage, Peace of Mind.</p>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Our Services</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500">
+          <a href="private-safe-deposit-box-storage.html" class="hover:text-gold transition">Private Safe Deposit Box</a>
+          <a href="bulk-storage.html" class="hover:text-gold transition">Bulk Storage</a>
+          <a href="bullion-precious-metal.html" class="hover:text-gold transition">Bullion &amp; Precious Metal</a>
+          <a href="secureplus.html" class="hover:text-gold transition">SecurePlus Insurance</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Contact Info</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500 leading-relaxed">
+          <div>11820 N. Cave Creek Road<br>Phoenix, AZ 85020</div>
+          <div>602-943-9796</div>
+          <div>info@mountainvault.net</div>
+          <div>Monday–Friday · 9AM–4PM</div>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Quick Links</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500">
+          <a href="security.html" class="hover:text-gold transition">Security &amp; Facility</a>
+          <a href="https://mountainvaultcrm.com" class="hover:text-gold transition">Pay Your Bill</a>
+          <a href="contact.html" class="hover:text-gold transition">Contact / Get a Quote</a>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-xs text-gray-600 text-center">
+      © 2026 Mountain Vault. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const openBtn = document.getElementById('mobileMenuBtn');
+    const closeBtn = document.getElementById('mobileMenuClose');
+    function openMobileMenu() {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      openBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    openBtn.addEventListener('click', openMobileMenu);
+    closeBtn.addEventListener('click', closeMobileMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
+  </script>
+</body>
+</html>

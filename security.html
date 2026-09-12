@@ -27,23 +27,77 @@
   .bg-gold { background-color: #C9A227; }
 </style>
 </head>
-<body class="bg-charcoal text-gray-200 antialiased">
+<body class="bg-charcoal text-gray-200 antialiased overflow-x-hidden">
+
+  <!-- ===== LIVE MARKET TICKER (TradingView) ===== -->
+  <div class="bg-black border-b border-white/10">
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+    </div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+    "symbols": [
+      { "proName": "OANDA:XAUUSD", "title": "Gold" },
+      { "proName": "OANDA:XAGUSD", "title": "Silver" },
+      { "proName": "COMEX:HG1!", "title": "Copper" }
+    ],
+    "showSymbolLogo": true,
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "colorTheme": "dark",
+    "locale": "en"
+    }
+    </script>
+  </div>
+
+
 
   <!-- ===== NAV ===== -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
+  <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <a href="index.html" class="flex items-center gap-3">
         <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
         <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block">MOUNTAIN VAULT</span>
       </a>
-      <nav class="hidden md:flex items-center gap-10 text-sm font-semibold uppercase tracking-wide text-gray-300">
+      <nav class="hidden md:flex items-center gap-5 lg:gap-7 text-xs lg:text-sm font-semibold uppercase tracking-wide text-gray-300">
         <a href="index.html" class="hover:text-white transition">Home</a>
-        <a href="security.html" class="text-gold">Security</a>
+        <a href="private-safe-deposit-box-storage.html" class="hover:text-white transition whitespace-nowrap">Private Safe Deposit Box Storage</a>
+        <a href="bulk-storage.html" class="hover:text-white transition whitespace-nowrap">Bulk Storage</a>
+        <a href="bullion-precious-metal.html" class="hover:text-white transition whitespace-nowrap">Bullion &amp; Precious Metal</a>
+        <a href="secureplus.html" class="hover:text-white transition">SecurePlus</a>
+        <a href="https://mountainvaultcrm.com" class="hover:text-white transition whitespace-nowrap">Pay Your Bill</a>
         <a href="contact.html" class="hover:text-white transition">Contact</a>
       </nav>
-      <a href="contact.html" class="inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+      <div class="flex items-center gap-3">
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+        <button id="mobileMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" class="md:hidden inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
     </div>
   </header>
+
+  <!-- ===== MOBILE MENU OVERLAY ===== -->
+  <div id="mobileMenu" class="fixed inset-0 z-[100] bg-charcoal hidden flex-col md:hidden">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between w-full">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
+      </a>
+      <button id="mobileMenuClose" type="button" aria-label="Close menu" class="inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto flex flex-col px-6 py-4 gap-1 text-lg font-semibold uppercase tracking-wide text-gray-200">
+      <a href="index.html" class="py-4 border-b border-white/10 hover:text-white transition">Home</a>
+      <a href="private-safe-deposit-box-storage.html" class="py-4 border-b border-white/10 hover:text-white transition">Private Safe Deposit Box Storage</a>
+      <a href="bulk-storage.html" class="py-4 border-b border-white/10 hover:text-white transition">Bulk Storage</a>
+      <a href="bullion-precious-metal.html" class="py-4 border-b border-white/10 hover:text-white transition">Bullion &amp; Precious Metal</a>
+      <a href="secureplus.html" class="py-4 border-b border-white/10 hover:text-white transition">SecurePlus</a>
+      <a href="https://mountainvaultcrm.com" class="py-4 border-b border-white/10 hover:text-white transition">Pay Your Bill</a>
+      <a href="contact.html" class="py-4 border-b border-white/10 hover:text-white transition">Contact</a>
+      <a href="contact.html" class="mt-6 inline-flex items-center justify-center h-14 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm">Get a Quote</a>
+    </nav>
+  </div>
 
   <!-- ===== HERO ===== -->
   <section class="relative h-[70vh] min-h-[480px] flex items-center">
@@ -204,6 +258,28 @@
       });
     }, { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+
+  <script>
+    const mobileMenu = document.getElementById('mobileMenu');
+    const openBtn = document.getElementById('mobileMenuBtn');
+    const closeBtn = document.getElementById('mobileMenuClose');
+    function openMobileMenu() {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('flex');
+      openBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.remove('flex');
+      openBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    openBtn.addEventListener('click', openMobileMenu);
+    closeBtn.addEventListener('click', closeMobileMenu);
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
   </script>
 
 </body>
