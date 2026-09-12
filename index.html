@@ -25,6 +25,47 @@
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
   .text-gold { color: #C9A227; }
   .bg-gold { background-color: #C9A227; }
+  .gallery-frame { background: #000; }
+  .gallery-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation-name: galleryFade;
+    animation-duration: 28s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes galleryFade {
+    0%    { opacity: 0; }
+    3%    { opacity: 1; }
+    14%   { opacity: 1; }
+    17.5% { opacity: 0; }
+    100%  { opacity: 0; }
+  }
+  .gallery-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.35);
+    animation-name: galleryDot;
+    animation-duration: 28s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes galleryDot {
+    0%    { background-color: rgba(255,255,255,0.35); transform: scale(1); }
+    3%    { background-color: #C9A227; transform: scale(1.3); }
+    14%   { background-color: #C9A227; transform: scale(1.3); }
+    17.5% { background-color: rgba(255,255,255,0.35); transform: scale(1); }
+    100%  { background-color: rgba(255,255,255,0.35); transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-img, .gallery-dot { animation: none !important; opacity: 1 !important; }
+    .gallery-img:not(:first-child) { display: none; }
+  }
 
   /* Hero coin parallax drift */
   .hero-bg { animation: heroDrift 20s ease-in-out infinite alternate; }
@@ -83,26 +124,26 @@
   <!-- ===== NAV ===== -->
   <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3 flex-shrink-0">
         <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
-        <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block">MOUNTAIN VAULT</span>
+        <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block whitespace-nowrap">MOUNTAIN VAULT</span>
       </a>
       <!-- Desktop nav — matches the real site's menu structure and links to real pages.
-           TODO (Asif/Mike to confirm): "Pay Your Bill" currently points to the real CRM login
-           (mountainvaultcrm.com) — swap for the exact client-facing bill-pay URL once you have it. -->
-      <nav class="hidden md:flex items-center gap-5 lg:gap-7 text-xs lg:text-sm font-semibold uppercase tracking-wide text-gray-300">
+           Shows at lg (1024px+) and up; below that the hamburger menu takes over, since this
+           7-item nav was overlapping the logo at in-between widths (fixed 2026-09-12). -->
+      <nav class="hidden lg:flex items-center gap-4 xl:gap-6 text-[11px] xl:text-xs font-semibold uppercase tracking-wide text-gray-300">
         <a href="index.html" class="text-gold">Home</a>
-        <a href="private-safe-deposit-box-storage.html" class="hover:text-white transition whitespace-nowrap">Private Safe Deposit Box Storage</a>
+        <a href="private-safe-deposit-box-storage.html" class="hover:text-white transition whitespace-nowrap">Private Storage</a>
         <a href="bulk-storage.html" class="hover:text-white transition whitespace-nowrap">Bulk Storage</a>
         <a href="bullion-precious-metal.html" class="hover:text-white transition whitespace-nowrap">Bullion &amp; Precious Metal</a>
         <a href="secureplus.html" class="hover:text-white transition">SecurePlus</a>
-        <a href="https://mountainvaultcrm.com" class="hover:text-white transition whitespace-nowrap">Pay Your Bill</a>
+        <a href="pay-your-bill.html" class="hover:text-white transition whitespace-nowrap">Pay Your Bill</a>
         <a href="contact.html" class="hover:text-white transition">Contact</a>
       </nav>
       <div class="flex items-center gap-3">
-        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition whitespace-nowrap">Get a Quote</a>
         <!-- Mobile menu button — only visible below the md breakpoint -->
-        <button id="mobileMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" class="md:hidden inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+        <button id="mobileMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" class="lg:hidden inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
       </div>
@@ -110,9 +151,9 @@
   </header>
 
   <!-- ===== MOBILE MENU OVERLAY ===== -->
-  <div id="mobileMenu" class="fixed inset-0 z-[100] bg-charcoal hidden flex-col md:hidden">
+  <div id="mobileMenu" class="fixed inset-0 z-[100] bg-charcoal hidden flex-col lg:hidden">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between w-full">
-      <a href="index.html" class="flex items-center gap-3">
+      <a href="index.html" class="flex items-center gap-3 flex-shrink-0">
         <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
       </a>
       <button id="mobileMenuClose" type="button" aria-label="Close menu" class="inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
@@ -125,7 +166,7 @@
       <a href="bulk-storage.html" class="py-4 border-b border-white/10 hover:text-white transition">Bulk Storage</a>
       <a href="bullion-precious-metal.html" class="py-4 border-b border-white/10 hover:text-white transition">Bullion &amp; Precious Metal</a>
       <a href="secureplus.html" class="py-4 border-b border-white/10 hover:text-white transition">SecurePlus</a>
-      <a href="https://mountainvaultcrm.com" class="py-4 border-b border-white/10 hover:text-white transition">Pay Your Bill</a>
+      <a href="pay-your-bill.html" class="py-4 border-b border-white/10 hover:text-white transition">Pay Your Bill</a>
       <a href="contact.html" class="py-4 border-b border-white/10 hover:text-white transition">Contact</a>
       <a href="contact.html" class="mt-6 inline-flex items-center justify-center h-14 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm">Get a Quote</a>
     </nav>
@@ -195,6 +236,31 @@
         <p class="text-xs text-gray-500 max-w-xs">Real exterior photo of the building coming soon — placeholder removed on request.</p>
       </div>
       <img src="https://images.unsplash.com/photo-1623743558917-37d9ab9e3b34?q=80&w=400&auto=format&fit=crop" alt="Gold coins detail" class="coin-float absolute -bottom-8 -left-8 w-32 h-32 object-cover rounded-full border-4 border-charcoal shadow-2xl hidden sm:block">
+    </div>
+  </section>
+
+  <!-- ===== GALLERY (auto-rotating, pure CSS, no JS) ===== -->
+  <section class="max-w-7xl mx-auto px-6 py-16 reveal">
+    <div class="text-center mb-8">
+      <div class="text-gold text-xs font-bold uppercase tracking-wide">Inside Mountain Vault</div>
+    </div>
+    <div class="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-white/10 gallery-frame">
+      <img src="https://images.unsplash.com/photo-1576797703268-f28d9bb9f9b7?q=80&w=1600&auto=format&fit=crop" alt="Wall of secure storage lockers" loading="lazy" class="gallery-img" style="animation-delay:0s;">
+      <img src="https://images.unsplash.com/photo-1645380192916-cf0057dbc339?q=80&w=1600&auto=format&fit=crop" alt="Heavy metal door with lock" loading="lazy" class="gallery-img" style="animation-delay:4s;">
+      <img src="https://images.unsplash.com/photo-1600531529272-023c4b821f14?q=80&w=1600&auto=format&fit=crop" alt="Mountain Vault facility building exterior" loading="lazy" class="gallery-img" style="animation-delay:8s;">
+      <img src="https://images.unsplash.com/photo-1556621266-45150d1e9f4b?q=80&w=1600&auto=format&fit=crop" alt="Modern secure facility structure" loading="lazy" class="gallery-img" style="animation-delay:12s;">
+      <img src="https://images.unsplash.com/photo-1584985429980-a9db9a42b324?q=80&w=1600&auto=format&fit=crop" alt="Gold padlock securing valuables" loading="lazy" class="gallery-img" style="animation-delay:16s;">
+      <img src="https://images.unsplash.com/photo-1618588845382-4267677cfc11?q=80&w=1600&auto=format&fit=crop" alt="Combination padlock closeup" loading="lazy" class="gallery-img" style="animation-delay:20s;">
+      <img src="https://images.unsplash.com/photo-1602503874881-c97c18856ae6?q=80&w=1600&auto=format&fit=crop" alt="Keypad security access control panel" loading="lazy" class="gallery-img" style="animation-delay:24s;">
+    </div>
+    <div class="flex items-center justify-center gap-2 mt-5">
+      <span class="gallery-dot" style="animation-delay:0s;"></span>
+      <span class="gallery-dot" style="animation-delay:4s;"></span>
+      <span class="gallery-dot" style="animation-delay:8s;"></span>
+      <span class="gallery-dot" style="animation-delay:12s;"></span>
+      <span class="gallery-dot" style="animation-delay:16s;"></span>
+      <span class="gallery-dot" style="animation-delay:20s;"></span>
+      <span class="gallery-dot" style="animation-delay:24s;"></span>
     </div>
   </section>
 
