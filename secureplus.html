@@ -25,6 +25,47 @@
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
   .text-gold { color: #C9A227; }
   .bg-gold { background-color: #C9A227; }
+  .gallery-frame { background: #000; }
+  .gallery-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation-name: galleryFade;
+    animation-duration: 24s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes galleryFade {
+    0%    { opacity: 0; }
+    3%    { opacity: 1; }
+    14%   { opacity: 1; }
+    17.5% { opacity: 0; }
+    100%  { opacity: 0; }
+  }
+  .gallery-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 9999px;
+    background: rgba(255,255,255,0.35);
+    animation-name: galleryDot;
+    animation-duration: 24s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  @keyframes galleryDot {
+    0%    { background-color: rgba(255,255,255,0.35); transform: scale(1); }
+    3%    { background-color: #C9A227; transform: scale(1.3); }
+    14%   { background-color: #C9A227; transform: scale(1.3); }
+    17.5% { background-color: rgba(255,255,255,0.35); transform: scale(1); }
+    100%  { background-color: rgba(255,255,255,0.35); transform: scale(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-img, .gallery-dot { animation: none !important; opacity: 1 !important; }
+    .gallery-img:not(:first-child) { display: none; }
+  }
 </style>
 </head>
 <body class="bg-charcoal text-gray-200 antialiased overflow-x-hidden">
@@ -109,7 +150,27 @@
     </div>
     <p class="mt-10 text-xs text-gray-500 max-w-2xl reveal">We strongly encourage every customer to maintain insurance for the full value of the property being stored — there are certain risks even the securest vault can't protect against.</p>
   </section>
-
+  <section class="max-w-7xl mx-auto px-6 py-16 reveal">
+    <div class="text-center mb-8">
+      <div class="text-gold text-xs font-bold uppercase tracking-wide">SecurePlus &amp; Facility Security</div>
+    </div>
+    <div class="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-white/10 gallery-frame">
+      <img src="https://images.unsplash.com/photo-1582139329536-e7284fece509?q=80&w=1600&auto=format&fit=crop" alt="Heavy steel vault door" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:0s;">
+      <img src="https://images.unsplash.com/photo-1592744254966-58c65cfd2e69?q=80&w=1600&auto=format&fit=crop" alt="Security camera monitoring a facility" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:4s;">
+      <img src="https://images.unsplash.com/photo-1566254488277-aebfe9ebb6a8?q=80&w=1600&auto=format&fit=crop" alt="Combination lock on a vault door" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:8s;">
+      <img src="https://images.unsplash.com/photo-1777652062282-9b2985cd28d9?q=80&w=1600&auto=format&fit=crop" alt="Armed security guard on patrol" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:12s;">
+      <img src="https://images.unsplash.com/photo-1768720407298-1b24a0f6749d?q=80&w=1600&auto=format&fit=crop" alt="Closed metal door with heavy lock" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:16s;">
+      <img src="https://images.unsplash.com/photo-1627019675516-5468b934815c?q=80&w=1600&auto=format&fit=crop" alt="Secure facility hallway with reinforced doors" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:20s;">
+    </div>
+    <div class="flex items-center justify-center gap-2 mt-5">
+      <span class="gallery-dot" style="animation-duration:24s; animation-delay:0s;"></span>
+        <span class="gallery-dot" style="animation-duration:24s; animation-delay:4s;"></span>
+        <span class="gallery-dot" style="animation-duration:24s; animation-delay:8s;"></span>
+        <span class="gallery-dot" style="animation-duration:24s; animation-delay:12s;"></span>
+        <span class="gallery-dot" style="animation-duration:24s; animation-delay:16s;"></span>
+        <span class="gallery-dot" style="animation-duration:24s; animation-delay:20s;"></span>
+    </div>
+  </section>
 
   <!-- ===== CTA ===== -->
   <section class="bg-black border-t border-white/10 py-20">
