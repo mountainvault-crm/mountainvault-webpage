@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact &amp; Get a Quote | Mountain Vault</title>
+<meta name="description" content="Get a quote from Mountain Vault or visit our Phoenix, Arizona facility. Private safe deposit boxes, bulk storage, and bullion vaulting.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { charcoal: '#111111', onyx: '#000000', gold: '#C9A227', steel: '#4A5568' },
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .text-gold { color: #C9A227; }
+  .bg-gold { background-color: #C9A227; }
+  input, textarea, select {
+    background: #000000; border: 1px solid rgba(255,255,255,0.15); color: #f5f5f5;
+  }
+  input:focus, textarea:focus, select:focus {
+    outline: none; border-color: #C9A227; box-shadow: 0 0 0 1px #C9A227;
+  }
+  input::placeholder, textarea::placeholder { color: #6b7280; }
+</style>
+</head>
+<body class="bg-charcoal text-gray-200 antialiased">
+
+  <!-- ===== NAV ===== -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
+        <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block">MOUNTAIN VAULT</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-10 text-sm font-semibold uppercase tracking-wide text-gray-300">
+        <a href="index.html" class="hover:text-white transition">Home</a>
+        <a href="security.html" class="hover:text-white transition">Security</a>
+        <a href="contact.html" class="text-gold">Contact</a>
+      </nav>
+      <a href="tel:6029439796" class="inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Call Us</a>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="pt-40 pb-16 max-w-7xl mx-auto px-6">
+    <div class="max-w-2xl reveal">
+      <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-5">Contact &amp; Quotes</div>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white leading-tight">Let's Talk About What You Need to Store.</h1>
+      <p class="mt-5 text-gray-400 text-lg">Fill out the form below and a vault specialist will get back to you — no obligation, no pressure.</p>
+    </div>
+  </section>
+
+  <!-- ===== FORM + INFO ===== -->
+  <section class="max-w-7xl mx-auto px-6 pb-28 grid lg:grid-cols-5 gap-12">
+
+    <!-- Contact Form -->
+    <form class="lg:col-span-3 bg-black border border-white/10 rounded-sm p-8 md:p-10 reveal" onsubmit="event.preventDefault(); alert('Demo form — connect this to your backend or a form service before launch.');">
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="sm:col-span-1">
+          <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Name</label>
+          <input type="text" name="name" required placeholder="Your full name" class="w-full h-12 px-4 rounded-sm text-sm">
+        </div>
+        <div class="sm:col-span-1">
+          <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Phone</label>
+          <input type="tel" name="phone" required placeholder="(602) 555-0100" class="w-full h-12 px-4 rounded-sm text-sm">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Email</label>
+          <input type="email" name="email" required placeholder="you@email.com" class="w-full h-12 px-4 rounded-sm text-sm">
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">What do you want to store?</label>
+          <select name="storage_type" class="w-full h-12 px-4 rounded-sm text-sm">
+            <option>Private Safe Deposit Box</option>
+            <option>Bulk Storage</option>
+            <option>Bullion &amp; Precious Metals</option>
+            <option>Not sure yet — need advice</option>
+          </select>
+        </div>
+        <div class="sm:col-span-2">
+          <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Message</label>
+          <textarea name="message" rows="5" placeholder="Tell us a bit about what you're looking for..." class="w-full px-4 py-3 rounded-sm text-sm"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="mt-8 w-full sm:w-auto inline-flex items-center justify-center h-14 px-10 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Request a Quote</button>
+      <p class="mt-4 text-xs text-gray-600">Demo form — wire this up to your backend, or a service like Formspree/Resend, before launch.</p>
+    </form>
+
+    <!-- Facility Info -->
+    <div class="lg:col-span-2 flex flex-col gap-8 reveal">
+      <div class="border border-white/10 rounded-sm p-8">
+        <div class="text-xs font-bold uppercase tracking-wide text-gold mb-5">Visit Us</div>
+        <div class="space-y-5 text-sm">
+          <div class="flex gap-4">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div class="text-gray-300">11820 N. Cave Creek Road<br>Phoenix, AZ 85020</div>
+          </div>
+          <div class="flex gap-4">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5c0 8.8 6.2 15 15 15l2-4-6-2-1.5 2A13 13 0 0 1 7.5 9.5L9.5 8l-2-6L4 4Z"/></svg>
+            <div class="text-gray-300">602-943-9796</div>
+          </div>
+          <div class="flex gap-4">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+            <div class="text-gray-300">info@mountainvault.net</div>
+          </div>
+          <div class="flex gap-4">
+            <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+            <div class="text-gray-300">Monday–Friday<br>9AM–4PM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map placeholder -->
+      <div class="border border-white/10 rounded-sm overflow-hidden h-56 bg-black flex items-center justify-center relative">
+        <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 18px 18px;"></div>
+        <div class="relative text-center px-6">
+          <svg class="w-8 h-8 text-gold mx-auto mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div class="text-sm text-gray-500">Map placeholder — embed Google Maps with your API key before launch.</div>
+        </div>
+      </div>
+
+      <div class="border border-gold/40 rounded-sm p-6 bg-gold/5">
+        <div class="text-sm font-semibold text-gold">Store Coming Soon</div>
+        <p class="mt-2 text-sm text-gray-400 leading-relaxed">We're building an online store with live API integration for future purchases and account management. Stay tuned.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-black border-t border-white/10 pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-9 w-auto">
+          <span class="text-base font-extrabold text-white">MOUNTAIN VAULT</span>
+        </div>
+        <p class="text-sm text-gray-500 leading-relaxed max-w-xs">Mountain Vault: Secure Storage, Peace of Mind.</p>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Quick Links</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500">
+          <a href="index.html" class="hover:text-gold transition">Home</a>
+          <a href="security.html" class="hover:text-gold transition">Security &amp; Facility</a>
+          <a href="contact.html" class="hover:text-gold transition">Contact / Get a Quote</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Contact Info</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500 leading-relaxed">
+          <div>11820 N. Cave Creek Road<br>Phoenix, AZ 85020</div>
+          <div>602-943-9796</div>
+          <div>info@mountainvault.net</div>
+          <div>Monday–Friday · 9AM–4PM</div>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">What's Next</div>
+        <p class="text-sm text-gray-500 leading-relaxed">Future E-commerce Store Integration — online ordering with live API pricing, coming soon.</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-xs text-gray-600 text-center">
+      © 2026 Mountain Vault. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

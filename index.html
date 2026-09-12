@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mountain Vault | Secure Storage. Peace of Mind.</title>
+<meta name="description" content="Mountain Vault provides private safe deposit boxes, bulk storage, and precious metals vaulting in a high-security, climate-controlled facility in Phoenix, Arizona.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { charcoal: '#111111', onyx: '#000000', gold: '#C9A227', steel: '#4A5568' },
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .text-gold { color: #C9A227; }
+  .bg-gold { background-color: #C9A227; }
+
+  /* Hero coin parallax drift */
+  .hero-bg { animation: heroDrift 20s ease-in-out infinite alternate; }
+  @keyframes heroDrift { from { transform: scale(1) translateY(0); } to { transform: scale(1.08) translateY(-14px); } }
+
+  /* Gold CTA glow pulse */
+  .glow-btn { position: relative; }
+  .glow-btn::after {
+    content: ''; position: absolute; inset: -6px; border-radius: 2px;
+    background: #C9A227; opacity: 0.35; z-index: -1; filter: blur(14px);
+    animation: pulseGlow 2.6s ease-in-out infinite;
+  }
+  @keyframes pulseGlow { 0%,100% { opacity: 0.22; } 50% { opacity: 0.5; } }
+
+  /* Floating coin accents */
+  .coin-float { animation: coinFloat 6s ease-in-out infinite; }
+  .coin-float.d2 { animation-delay: -2s; }
+  .coin-float.d3 { animation-delay: -4s; }
+  @keyframes coinFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-14px) rotate(8deg); } }
+
+  /* Ticker marquee fallback strip */
+  .marquee-track { display: flex; width: max-content; animation: marquee 28s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* Counter number pop on reveal */
+  .count-up.is-visible .num { animation: countPop 0.6s ease-out; }
+  @keyframes countPop { from { opacity: 0; transform: scale(0.7); } to { opacity: 1; transform: scale(1); } }
+</style>
+</head>
+<body class="bg-charcoal text-gray-200 antialiased overflow-x-hidden">
+
+  <!-- ===== LIVE MARKET TICKER (TradingView) ===== -->
+  <div class="bg-black border-b border-white/10">
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+    </div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+    {
+    "symbols": [
+      { "proName": "OANDA:XAUUSD", "title": "Gold" },
+      { "proName": "OANDA:XAGUSD", "title": "Silver" },
+      { "proName": "COMEX:HG1!", "title": "Copper" }
+    ],
+    "showSymbolLogo": true,
+    "isTransparent": false,
+    "displayMode": "adaptive",
+    "colorTheme": "dark",
+    "locale": "en"
+    }
+    </script>
+    <!-- Fallback note: this is TradingView's real live widget — it needs an internet connection to load.
+         If you'd rather not depend on an external script, delete this block and use the static
+         ticker markup from the first demo instead. -->
+  </div>
+
+  <!-- ===== NAV ===== -->
+  <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
+        <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block">MOUNTAIN VAULT</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-10 text-sm font-semibold uppercase tracking-wide text-gray-300">
+        <a href="index.html" class="text-gold">Home</a>
+        <a href="security.html" class="hover:text-white transition">Security</a>
+        <a href="contact.html" class="hover:text-white transition">Contact</a>
+      </nav>
+      <a href="contact.html" class="inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+    </div>
+  </header>
+
+  <!-- ===== HERO (coins photo + glow CTA) ===== -->
+  <section class="relative h-screen min-h-[640px] flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="https://images.unsplash.com/photo-1624365169106-1f1f4cd65c91?q=80&w=1800&auto=format&fit=crop" alt="Gold and silver coins secured at Mountain Vault" class="hero-bg w-full h-full object-cover">
+      <div class="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/50"></div>
+      <div class="absolute inset-0 bg-black/25"></div>
+    </div>
+
+    <!-- floating coin glyphs -->
+    <div class="coin-float absolute top-[22%] right-[12%] w-14 h-14 rounded-full border-2 border-gold/70 bg-black/40 backdrop-blur flex items-center justify-center text-gold text-xs font-bold hidden lg:flex">AU</div>
+    <div class="coin-float d2 absolute top-[52%] right-[22%] w-10 h-10 rounded-full border-2 border-gold/50 bg-black/40 backdrop-blur flex items-center justify-center text-gold text-[10px] font-bold hidden lg:flex">AG</div>
+    <div class="coin-float d3 absolute top-[68%] right-[8%] w-8 h-8 rounded-full border-2 border-gold/40 bg-black/40 backdrop-blur hidden lg:flex"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 w-full">
+      <div class="max-w-2xl">
+        <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-6 reveal">Phoenix, Arizona &middot; Private Vault Facility</div>
+        <h1 class="text-5xl md:text-7xl font-extrabold text-white leading-[1.05] tracking-tight reveal">Secure Storage.<br>Peace of Mind.</h1>
+        <p class="mt-6 text-lg md:text-xl text-gray-300 max-w-lg reveal">Mountain Vault — your assets protected 24/7 in a private, climate-controlled facility built for security.</p>
+        <div class="mt-10 flex flex-wrap gap-4 reveal">
+          <a href="contact.html" class="glow-btn inline-flex items-center justify-center h-14 px-9 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+          <a href="security.html" class="inline-flex items-center justify-center h-14 px-9 border border-white/30 text-white text-sm font-bold uppercase tracking-wide rounded-sm hover:border-white transition">See Our Security</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TRUST BAR (animated counters) ===== -->
+  <section class="bg-black border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="count-up flex flex-col items-center text-center gap-3 reveal">
+        <svg class="w-8 h-8 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <div class="num text-sm font-semibold text-gray-200 uppercase tracking-wide">24/7 Monitoring</div>
+      </div>
+      <div class="count-up flex flex-col items-center text-center gap-3 reveal">
+        <svg class="w-8 h-8 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3a4 4 0 0 1 4 4v2h1a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-9a1 1 0 0 1 1-1h1V7a4 4 0 0 1 4-4Z"/><circle cx="12" cy="14" r="1.6"/></svg>
+        <div class="num text-sm font-semibold text-gray-200 uppercase tracking-wide">Armed Security Guards</div>
+      </div>
+      <div class="count-up flex flex-col items-center text-center gap-3 reveal">
+        <svg class="w-8 h-8 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div class="num text-sm font-semibold text-gray-200 uppercase tracking-wide">Insured Facility</div>
+      </div>
+      <div class="count-up flex flex-col items-center text-center gap-3 reveal">
+        <svg class="w-8 h-8 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>
+        <div class="num text-sm font-semibold text-gray-200 uppercase tracking-wide">Climate Controlled</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="max-w-7xl mx-auto px-6 py-28 grid md:grid-cols-2 gap-16 items-center">
+    <div class="reveal">
+      <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-5">About Mountain Vault</div>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white leading-tight">A Private Facility Built Around One Purpose: Keeping What's Yours Safe.</h2>
+      <p class="mt-6 text-gray-400 leading-relaxed">Mountain Vault protects sensitive documents, valuables, and precious metals inside a high-security, climate-controlled facility — watched around the clock and staffed by professionals on-site. Whether it's a family's most important papers or a business's bulk inventory, every item is held to the same higher standard.</p>
+      <p class="mt-4 text-gray-400 leading-relaxed">Private safe deposit boxes, bulk storage for oversized items, and purpose-built bullion vaulting — all under one roof, all protected the same way.</p>
+      <a href="security.html" class="mt-8 inline-flex items-center gap-2 text-gold font-semibold uppercase text-sm tracking-wide hover:text-white transition">See how we secure it &rarr;</a>
+    </div>
+    <div class="reveal relative">
+      <div class="w-full h-[420px] rounded-sm border border-dashed border-white/20 bg-black/60 flex flex-col items-center justify-center gap-4 text-center px-6">
+        <svg class="w-10 h-10 text-gold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M8 6l1.5-2.5h5L16 6"/><circle cx="12" cy="12.5" r="3.2"/></svg>
+        <div class="text-sm font-semibold text-gray-300 uppercase tracking-wide">Mountain Vault Facility Photo</div>
+        <p class="text-xs text-gray-500 max-w-xs">Real exterior photo of the building coming soon — placeholder removed on request.</p>
+      </div>
+      <img src="https://images.unsplash.com/photo-1623743558917-37d9ab9e3b34?q=80&w=400&auto=format&fit=crop" alt="Gold coins detail" class="coin-float absolute -bottom-8 -left-8 w-32 h-32 object-cover rounded-full border-4 border-charcoal shadow-2xl hidden sm:block">
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="bg-black py-28 border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center max-w-xl mx-auto mb-16 reveal">
+        <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-5">Trusted By Our Clients</div>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white">What Our Clients Say</h2>
+        <p class="mt-3 text-sm text-gray-500">Sample testimonials — swap in real client quotes before this page goes live.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-charcoal border border-white/10 rounded-sm p-8 reveal hover:border-gold/50 transition">
+          <div class="flex gap-1 text-gold mb-5">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+          </div>
+          <p class="text-gray-300 leading-relaxed">"I moved my family's documents and heirlooms here after a break-in scare. The facility feels serious about security from the moment you walk in."</p>
+          <div class="mt-6 text-sm font-semibold text-white">J. Reynolds <span class="text-gray-500 font-normal">— Private Client</span></div>
+        </div>
+        <div class="bg-charcoal border border-white/10 rounded-sm p-8 reveal hover:border-gold/50 transition">
+          <div class="flex gap-1 text-gold mb-5">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+          </div>
+          <p class="text-gray-300 leading-relaxed">"We store bulk inventory for our business here. Climate control matters for what we keep, and it's never been an issue in three years."</p>
+          <div class="mt-6 text-sm font-semibold text-white">M. Alvarez <span class="text-gray-500 font-normal">— Business Owner</span></div>
+        </div>
+        <div class="bg-charcoal border border-white/10 rounded-sm p-8 reveal hover:border-gold/50 transition">
+          <div class="flex gap-1 text-gold mb-5">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M10 1l2.6 6h6.4l-5.2 3.8 2 6.2L10 13l-5.8 4 2-6.2L1 7h6.4z"/></svg>
+          </div>
+          <p class="text-gray-300 leading-relaxed">"Booking a visit was simple and staff were on-site to help. It's the kind of place where you can tell they take security seriously."</p>
+          <div class="mt-6 text-sm font-semibold text-white">S. Whitfield <span class="text-gray-500 font-normal">— Private Client</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="relative py-28 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-black to-charcoal"></div>
+    <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 50% 0%, #C9A227 0%, transparent 60%);"></div>
+    <div class="relative max-w-3xl mx-auto px-6 text-center reveal">
+      <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">Ready to Secure Your Valuables?</h2>
+      <p class="mt-5 text-gray-400 text-lg">Talk to a vault specialist today — no obligation, no pressure.</p>
+      <div class="mt-10 flex flex-wrap gap-4 justify-center">
+        <a href="contact.html" class="glow-btn inline-flex items-center justify-center h-14 px-9 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
+        <a href="tel:6029439796" class="inline-flex items-center justify-center h-14 px-9 border border-white/30 text-white text-sm font-bold uppercase tracking-wide rounded-sm hover:border-white transition">Call 602-943-9796</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-black border-t border-white/10 pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-9 w-auto">
+          <span class="text-base font-extrabold text-white">MOUNTAIN VAULT</span>
+        </div>
+        <p class="text-sm text-gray-500 leading-relaxed max-w-xs">Mountain Vault: Secure Storage, Peace of Mind.</p>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Quick Links</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500">
+          <a href="index.html" class="hover:text-gold transition">Home</a>
+          <a href="security.html" class="hover:text-gold transition">Security &amp; Facility</a>
+          <a href="contact.html" class="hover:text-gold transition">Contact / Get a Quote</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Contact Info</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500 leading-relaxed">
+          <div>11820 N. Cave Creek Road<br>Phoenix, AZ 85020</div>
+          <div>602-943-9796</div>
+          <div>info@mountainvault.net</div>
+          <div>Monday–Friday · 9AM–4PM</div>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">What's Next</div>
+        <p class="text-sm text-gray-500 leading-relaxed">Future E-commerce Store Integration — online ordering with live API pricing, coming soon.</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-xs text-gray-600 text-center">
+      © 2026 Mountain Vault. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
