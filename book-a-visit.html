@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Visit | Mountain Vault</title>
+<meta name="description" content="Schedule a visit to Mountain Vault in Phoenix, Arizona. Choose an available time slot and book your appointment instantly — no phone tag required.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: { charcoal: '#111111', onyx: '#000000', gold: '#C9A227', steel: '#4A5568' },
+        fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', system-ui, sans-serif; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .text-gold { color: #C9A227; }
+  .bg-gold { background-color: #C9A227; }
+  input, textarea {
+    background: #000000; border: 1px solid rgba(255,255,255,0.15); color: #f5f5f5;
+  }
+  input:focus, textarea:focus {
+    outline: none; border-color: #C9A227; box-shadow: 0 0 0 1px #C9A227;
+  }
+  input::placeholder, textarea::placeholder { color: #6b7280; }
+  input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.7); cursor: pointer; }
+  .slot-btn {
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #e5e7eb;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+  }
+  .slot-btn:hover { border-color: #C9A227; color: #fff; }
+  .slot-btn.selected { background: #C9A227; border-color: #C9A227; color: #000; font-weight: 700; }
+</style>
+</head>
+<body class="bg-charcoal text-gray-200 antialiased overflow-x-hidden">
+
+  <!-- ===== NAV ===== -->
+  <header class="sticky top-0 z-50 bg-black/80 backdrop-blur border-b border-white/10">
+    <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 flex-shrink-0">
+        <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
+        <span class="text-lg font-extrabold tracking-wide text-white hidden sm:block xl:hidden whitespace-nowrap">MOUNTAIN VAULT</span>
+      </a>
+      <nav class="hidden xl:flex items-center gap-4 2xl:gap-6 text-xs font-semibold uppercase tracking-wide text-gray-300">
+        <a href="index.html" class="hover:text-white transition whitespace-nowrap">Home</a>
+        <a href="private-safe-deposit-box-storage.html" class="hover:text-white transition whitespace-nowrap">Private Storage</a>
+        <a href="bulk-storage.html" class="hover:text-white transition whitespace-nowrap">Bulk Storage</a>
+        <a href="bullion-precious-metal.html" class="hover:text-white transition whitespace-nowrap">Bullion &amp; Precious Metal</a>
+        <a href="ship-to-us.html" class="hover:text-white transition whitespace-nowrap">Ship to Us</a>
+        <a href="secureplus.html" class="hover:text-white transition whitespace-nowrap">SecurePlus</a>
+        <a href="pay-your-bill.html" class="hover:text-white transition whitespace-nowrap">Pay Your Bill</a>
+        <a href="contact.html" class="hover:text-white transition whitespace-nowrap">Contact</a>
+        <a href="book-a-visit.html" class="text-gold whitespace-nowrap">Book a Visit</a>
+      </nav>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <a href="contact.html" class="hidden sm:inline-flex items-center justify-center h-11 px-6 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition whitespace-nowrap">Get a Quote</a>
+        <button id="mobileMenuBtn" type="button" aria-label="Open menu" aria-expanded="false" class="xl:hidden inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MOBILE MENU OVERLAY ===== -->
+  <div id="mobileMenu" class="fixed inset-0 z-[100] bg-charcoal hidden flex-col xl:hidden">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between w-full">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-10 w-auto">
+      </a>
+      <button id="mobileMenuClose" type="button" aria-label="Close menu" class="inline-flex items-center justify-center w-11 h-11 border border-white/20 rounded-sm text-white">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto flex flex-col px-6 py-4 gap-1 text-lg font-semibold uppercase tracking-wide text-gray-200">
+      <a href="index.html" class="py-4 border-b border-white/10 hover:text-white transition">Home</a>
+      <a href="private-safe-deposit-box-storage.html" class="py-4 border-b border-white/10 hover:text-white transition">Private Safe Deposit Box Storage</a>
+      <a href="bulk-storage.html" class="py-4 border-b border-white/10 hover:text-white transition">Bulk Storage</a>
+      <a href="bullion-precious-metal.html" class="py-4 border-b border-white/10 hover:text-white transition">Bullion &amp; Precious Metal</a>
+      <a href="ship-to-us.html" class="py-4 border-b border-white/10 hover:text-white transition">Ship to Us</a>
+      <a href="secureplus.html" class="py-4 border-b border-white/10 hover:text-white transition">SecurePlus</a>
+      <a href="pay-your-bill.html" class="py-4 border-b border-white/10 hover:text-white transition">Pay Your Bill</a>
+      <a href="contact.html" class="py-4 border-b border-white/10 hover:text-white transition">Contact</a>
+      <a href="book-a-visit.html" class="py-4 border-b border-white/10 text-gold">Book a Visit</a>
+      <a href="contact.html" class="mt-6 inline-flex items-center justify-center h-14 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm">Get a Quote</a>
+    </nav>
+  </div>
+
+  <!-- ===== PAGE HEADER ===== -->
+  <section class="pt-20 pb-16 border-b border-white/10 bg-black">
+    <div class="max-w-5xl mx-auto px-6 pt-16 reveal">
+      <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-5">Schedule a Visit</div>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-3xl">Book a Visit to Mountain Vault</h1>
+      <p class="mt-6 text-gray-400 text-lg max-w-2xl">Choose a date and time that works for you. Available Monday–Friday, 9:00 AM–3:30 PM. Your appointment is confirmed instantly — no phone tag, no waiting.</p>
+    </div>
+  </section>
+
+  <!-- ===== BOOKING FLOW ===== -->
+  <section class="max-w-5xl mx-auto px-6 py-20">
+
+    <!-- Step 1: Date picker -->
+    <div class="mb-12 reveal">
+      <div class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">Step 1 — Pick a Date</div>
+      <div class="flex flex-wrap items-end gap-6">
+        <div>
+          <label for="visitDate" class="block text-sm font-semibold text-gray-300 mb-2">Select date <span class="text-gray-500 font-normal">(Monday–Friday only)</span></label>
+          <input type="date" id="visitDate"
+            class="h-12 px-4 rounded-sm text-sm w-56 cursor-pointer"
+            style="color-scheme:dark;">
+        </div>
+        <div id="weekendNote" class="hidden text-sm text-amber-400 pb-2">
+          Weekends are not available — please select a weekday.
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: Time slots -->
+    <div id="slotsSection" class="hidden mb-12 reveal">
+      <div class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">Step 2 — Choose a Time</div>
+      <div id="slotsLoading" class="text-gray-500 text-sm">Loading available times…</div>
+      <div id="slotsGrid" class="hidden grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3"></div>
+      <div id="noSlots" class="hidden text-gray-500 text-sm">No available slots for this date. Please try another day.</div>
+    </div>
+
+    <!-- Step 3: Booking form (shown after slot selected) -->
+    <div id="formSection" class="hidden reveal">
+      <div class="text-xs font-bold uppercase tracking-[0.2em] text-gray-400 mb-4">Step 3 — Your Details</div>
+      <div id="selectedSlotBadge" class="inline-flex items-center gap-2 px-4 py-2 bg-gold/10 border border-gold/30 rounded-sm text-gold text-sm font-semibold mb-8"></div>
+
+      <form id="bookingForm" class="bg-black border border-white/10 rounded-sm p-8 md:p-10 max-w-xl">
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Name *</label>
+            <input type="text" id="bkName" required placeholder="Your full name" class="w-full h-12 px-4 rounded-sm text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Phone *</label>
+            <input type="tel" id="bkPhone" required placeholder="(602) 555-0100" class="w-full h-12 px-4 rounded-sm text-sm">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Email <span class="text-gray-600 font-normal">(optional)</span></label>
+            <input type="email" id="bkEmail" placeholder="you@email.com" class="w-full h-12 px-4 rounded-sm text-sm">
+          </div>
+          <div class="sm:col-span-2">
+            <label class="block text-xs font-bold uppercase tracking-wide text-gray-400 mb-2">Notes <span class="text-gray-600 font-normal">(optional)</span></label>
+            <textarea id="bkNotes" rows="3" placeholder="Anything we should know before your visit…" class="w-full px-4 py-3 rounded-sm text-sm"></textarea>
+          </div>
+        </div>
+
+        <div id="formError" class="hidden mt-4 px-4 py-3 bg-red-900/30 border border-red-500/40 rounded-sm text-sm text-red-300"></div>
+
+        <button type="submit" id="submitBtn"
+          class="mt-8 w-full sm:w-auto inline-flex items-center justify-center h-14 px-10 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">
+          Confirm Booking
+        </button>
+      </form>
+    </div>
+
+    <!-- Success confirmation -->
+    <div id="successSection" class="hidden reveal">
+      <div class="bg-black border border-white/10 rounded-sm p-10 max-w-xl text-center">
+        <svg class="w-14 h-14 text-gold mx-auto mb-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="m9 12 2 2 4-4"/></svg>
+        <div class="text-xl font-bold text-white mb-2">You're booked!</div>
+        <div id="successDetail" class="text-gray-400 text-sm leading-relaxed mb-6"></div>
+        <p class="text-gray-500 text-sm">Questions? Call us at <a href="tel:6029439796" class="text-gold hover:text-white transition">602-943-9796</a> or email <a href="mailto:info@mountainvault.net" class="text-gold hover:text-white transition">info@mountainvault.net</a>.</p>
+        <button onclick="resetBooking()" class="mt-8 inline-flex items-center justify-center h-11 px-6 border border-white/20 text-white text-sm font-semibold rounded-sm hover:border-white transition">Book another visit</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===== FACILITY INFO STRIP ===== -->
+  <section class="bg-black border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-6 py-12 grid sm:grid-cols-3 gap-8 text-sm">
+      <div class="flex gap-4 items-start">
+        <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        <div>
+          <div class="font-semibold text-white mb-1">Address</div>
+          <div class="text-gray-400">11820 N. Cave Creek Road<br>Phoenix, AZ 85020</div>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start">
+        <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        <div>
+          <div class="font-semibold text-white mb-1">Visit Hours</div>
+          <div class="text-gray-400">Monday–Friday<br>9:00 AM – 3:30 PM</div>
+        </div>
+      </div>
+      <div class="flex gap-4 items-start">
+        <svg class="w-5 h-5 text-gold flex-shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5c0 8.8 6.2 15 15 15l2-4-6-2-1.5 2A13 13 0 0 1 7.5 9.5L9.5 8l-2-6L4 4Z"/></svg>
+        <div>
+          <div class="font-semibold text-white mb-1">Questions?</div>
+          <div class="text-gray-400"><a href="tel:6029439796" class="hover:text-gold transition">602-943-9796</a><br><a href="mailto:info@mountainvault.net" class="hover:text-gold transition">info@mountainvault.net</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bg-black border-t border-white/10 pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="https://mountainvault.net/wp-content/uploads/2026/08/logo-clean-transparent.png" alt="Mountain Vault" class="h-9 w-auto">
+          <span class="text-base font-extrabold text-white">MOUNTAIN VAULT</span>
+        </div>
+        <p class="text-sm text-gray-500 leading-relaxed max-w-xs">Mountain Vault: Secure Storage, Peace of Mind.</p>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Our Services</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500">
+          <a href="private-safe-deposit-box-storage.html" class="hover:text-gold transition">Private Safe Deposit Box</a>
+          <a href="bulk-storage.html" class="hover:text-gold transition">Bulk Storage</a>
+          <a href="bullion-precious-metal.html" class="hover:text-gold transition">Bullion &amp; Precious Metal</a>
+          <a href="ship-to-us.html" class="hover:text-gold transition">Ship &amp; Store</a>
+          <a href="secureplus.html" class="hover:text-gold transition">SecurePlus Insurance</a>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Contact Info</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500 leading-relaxed">
+          <div>11820 N. Cave Creek Road<br>Phoenix, AZ 85020</div>
+          <div>602-943-9796</div>
+          <div>info@mountainvault.net</div>
+          <div>Monday–Friday · 9AM–4PM</div>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-bold uppercase tracking-wide text-gray-300 mb-4">Quick Links</div>
+        <div class="flex flex-col gap-3 text-sm text-gray-500">
+          <a href="security.html" class="hover:text-gold transition">Security &amp; Facility</a>
+          <a href="pay-your-bill.html" class="hover:text-gold transition">Pay Your Bill</a>
+          <a href="book-a-visit.html" class="text-gold">Book a Visit</a>
+          <a href="contact.html" class="hover:text-gold transition">Contact / Get a Quote</a>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/10 text-xs text-gray-600 text-center">
+      © 2026 Mountain Vault. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // ── Reveal on scroll ──────────────────────────────────────────────────────
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // ── Mobile menu ───────────────────────────────────────────────────────────
+    const mobileMenu = document.getElementById('mobileMenu');
+    const openBtn    = document.getElementById('mobileMenuBtn');
+    const closeBtn   = document.getElementById('mobileMenuClose');
+    function openMobileMenu()  { mobileMenu.classList.remove('hidden'); mobileMenu.classList.add('flex'); openBtn.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; }
+    function closeMobileMenu() { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('flex'); openBtn.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+    openBtn.addEventListener('click', openMobileMenu);
+    closeBtn.addEventListener('click', closeMobileMenu);
+
+    // ── Booking state ─────────────────────────────────────────────────────────
+    const API_BASE   = 'https://mountainvault-crm-backend-production.up.railway.app';
+    let   selectedDate = '';
+    let   selectedTime = '';
+
+    function formatDate(dateStr) {
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const date = new Date(y, m - 1, d);
+      return date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    }
+
+    function formatTime(hhmm) {
+      const [h, m] = hhmm.split(':').map(Number);
+      const period = h >= 12 ? 'PM' : 'AM';
+      const h12    = h % 12 || 12;
+      return `${h12}:${String(m).padStart(2,'0')} ${period}`;
+    }
+
+    function isWeekend(dateStr) {
+      const [y, mo, d] = dateStr.split('-').map(Number);
+      const dow = new Date(y, mo - 1, d).getDay();
+      return dow === 0 || dow === 6;
+    }
+
+    // ── Date change handler ───────────────────────────────────────────────────
+    const visitDateInput = document.getElementById('visitDate');
+
+    // Set minimum date to today (Arizona UTC-7)
+    const nowAZ = new Date(Date.now() - 7 * 3600 * 1000);
+    const todayStr = `${nowAZ.getUTCFullYear()}-${String(nowAZ.getUTCMonth()+1).padStart(2,'0')}-${String(nowAZ.getUTCDate()).padStart(2,'0')}`;
+    visitDateInput.min = todayStr;
+
+    visitDateInput.addEventListener('change', () => {
+      const date = visitDateInput.value;
+      if (!date) return;
+
+      document.getElementById('weekendNote').classList.add('hidden');
+      document.getElementById('formSection').classList.add('hidden');
+      document.getElementById('successSection').classList.add('hidden');
+      selectedTime = '';
+
+      if (isWeekend(date)) {
+        document.getElementById('weekendNote').classList.remove('hidden');
+        document.getElementById('slotsSection').classList.add('hidden');
+        return;
+      }
+
+      selectedDate = date;
+      loadSlots(date);
+    });
+
+    async function loadSlots(date) {
+      const slotsSection  = document.getElementById('slotsSection');
+      const slotsLoading  = document.getElementById('slotsLoading');
+      const slotsGrid     = document.getElementById('slotsGrid');
+      const noSlots       = document.getElementById('noSlots');
+
+      slotsSection.classList.remove('hidden');
+      slotsLoading.classList.remove('hidden');
+      slotsGrid.classList.add('hidden');
+      noSlots.classList.add('hidden');
+
+      try {
+        const res  = await fetch(`${API_BASE}/api/visits/availability?date=${date}`);
+        const data = await res.json();
+
+        slotsLoading.classList.add('hidden');
+
+        if (!data.slots || data.slots.length === 0) {
+          noSlots.classList.remove('hidden');
+          return;
+        }
+
+        slotsGrid.innerHTML = '';
+        for (const slot of data.slots) {
+          const btn = document.createElement('button');
+          btn.type      = 'button';
+          btn.className = 'slot-btn h-12 px-3 rounded-sm text-sm font-medium bg-transparent';
+          btn.textContent = formatTime(slot);
+          btn.dataset.time = slot;
+          btn.addEventListener('click', () => selectSlot(slot, btn));
+          slotsGrid.appendChild(btn);
+        }
+        slotsGrid.classList.remove('hidden');
+
+        // Trigger reveal animation
+        observer.observe(slotsSection);
+      } catch (err) {
+        slotsLoading.classList.add('hidden');
+        noSlots.textContent = 'Could not load available times. Please try again.';
+        noSlots.classList.remove('hidden');
+      }
+    }
+
+    function selectSlot(time, btn) {
+      selectedTime = time;
+
+      // Update button states
+      document.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+
+      // Show form
+      const formSection = document.getElementById('formSection');
+      const badge       = document.getElementById('selectedSlotBadge');
+      badge.textContent = `${formatDate(selectedDate)} · ${formatTime(time)}`;
+      formSection.classList.remove('hidden');
+      observer.observe(formSection);
+
+      // Scroll form into view
+      setTimeout(() => formSection.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+    }
+
+    // ── Booking form submit ───────────────────────────────────────────────────
+    document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name  = document.getElementById('bkName').value.trim();
+      const phone = document.getElementById('bkPhone').value.trim();
+      const email = document.getElementById('bkEmail').value.trim();
+      const notes = document.getElementById('bkNotes').value.trim();
+      const errEl = document.getElementById('formError');
+      const btn   = document.getElementById('submitBtn');
+
+      errEl.classList.add('hidden');
+
+      if (!name)  { showFormError('Name is required.'); return; }
+      if (!phone) { showFormError('Phone is required.'); return; }
+      if (!selectedDate || !selectedTime) { showFormError('Please select a date and time first.'); return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Booking…';
+
+      try {
+        const res  = await fetch(`${API_BASE}/api/visits/book`, {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify({ name, phone, email, notes, date: selectedDate, time: selectedTime }),
+        });
+        const data = await res.json();
+
+        if (res.status === 409) {
+          showFormError('That time was just booked by someone else — please pick another slot.');
+          loadSlots(selectedDate);
+          selectedTime = '';
+          document.getElementById('formSection').classList.add('hidden');
+          btn.disabled = false;
+          btn.textContent = 'Confirm Booking';
+          return;
+        }
+
+        if (!res.ok) {
+          showFormError(data.error || 'Booking failed. Please try again or call us directly.');
+          btn.disabled = false;
+          btn.textContent = 'Confirm Booking';
+          return;
+        }
+
+        // Success
+        document.getElementById('formSection').classList.add('hidden');
+        document.getElementById('slotsSection').classList.add('hidden');
+        const successSection = document.getElementById('successSection');
+        document.getElementById('successDetail').innerHTML =
+          `Your visit is confirmed for<br><strong class="text-white">${formatDate(selectedDate)} at ${formatTime(selectedTime)}</strong>.`;
+        successSection.classList.remove('hidden');
+        observer.observe(successSection);
+        successSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (err) {
+        showFormError('Network error — please check your connection and try again.');
+        btn.disabled = false;
+        btn.textContent = 'Confirm Booking';
+      }
+    });
+
+    function showFormError(msg) {
+      const errEl = document.getElementById('formError');
+      errEl.textContent = msg;
+      errEl.classList.remove('hidden');
+    }
+
+    function resetBooking() {
+      visitDateInput.value = '';
+      selectedDate = '';
+      selectedTime = '';
+      document.getElementById('successSection').classList.add('hidden');
+      document.getElementById('slotsSection').classList.add('hidden');
+      document.getElementById('formSection').classList.add('hidden');
+      document.getElementById('weekendNote').classList.add('hidden');
+      document.getElementById('bkName').value  = '';
+      document.getElementById('bkPhone').value = '';
+      document.getElementById('bkEmail').value = '';
+      document.getElementById('bkNotes').value = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+
+</body>
+</html>
