@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bulk Storage | Mountain Vault</title>
-<meta name="description" content="Secure bulk storage in Phoenix, Arizona for collections, crated artwork, and oversized valuables too big for a bank.">
+<title>Ship &amp; Store | Mountain Vault</title>
+<meta name="description" content="Ship your metals, documents, or valuables to Mountain Vault for secure, segregated vault storage in Phoenix, Arizona — even if you can't walk them in yourself.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -25,47 +25,6 @@
   .reveal.is-visible { opacity: 1; transform: translateY(0); }
   .text-gold { color: #C9A227; }
   .bg-gold { background-color: #C9A227; }
-  .gallery-frame { background: #000; }
-  .gallery-img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    animation-name: galleryFade;
-    animation-duration: 24s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-  }
-  @keyframes galleryFade {
-    0%    { opacity: 0; }
-    3%    { opacity: 1; }
-    14%   { opacity: 1; }
-    17.5% { opacity: 0; }
-    100%  { opacity: 0; }
-  }
-  .gallery-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 9999px;
-    background: rgba(255,255,255,0.35);
-    animation-name: galleryDot;
-    animation-duration: 24s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-  }
-  @keyframes galleryDot {
-    0%    { background-color: rgba(255,255,255,0.35); transform: scale(1); }
-    3%    { background-color: #C9A227; transform: scale(1.3); }
-    14%   { background-color: #C9A227; transform: scale(1.3); }
-    17.5% { background-color: rgba(255,255,255,0.35); transform: scale(1); }
-    100%  { background-color: rgba(255,255,255,0.35); transform: scale(1); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .gallery-img, .gallery-dot { animation: none !important; opacity: 1 !important; }
-    .gallery-img:not(:first-child) { display: none; }
-  }
 </style>
 </head>
 <body class="bg-charcoal text-gray-200 antialiased overflow-x-hidden">
@@ -80,9 +39,9 @@
       <nav class="hidden lg:flex items-center gap-4 xl:gap-6 text-[11px] xl:text-xs font-semibold uppercase tracking-wide text-gray-300">
         <a href="index.html" class="hover:text-white transition whitespace-nowrap">Home</a>
         <a href="private-safe-deposit-box-storage.html" class="hover:text-white transition whitespace-nowrap">Private Storage</a>
-        <a href="bulk-storage.html" class="text-gold whitespace-nowrap">Bulk Storage</a>
+        <a href="bulk-storage.html" class="hover:text-white transition whitespace-nowrap">Bulk Storage</a>
         <a href="bullion-precious-metal.html" class="hover:text-white transition whitespace-nowrap">Bullion &amp; Precious Metal</a>
-        <a href="ship-to-us.html" class="hover:text-white transition whitespace-nowrap">Ship to Us</a>
+        <a href="ship-to-us.html" class="text-gold whitespace-nowrap">Ship to Us</a>
         <a href="secureplus.html" class="hover:text-white transition whitespace-nowrap">SecurePlus</a>
         <a href="pay-your-bill.html" class="hover:text-white transition whitespace-nowrap">Pay Your Bill</a>
         <a href="contact.html" class="hover:text-white transition whitespace-nowrap">Contact</a>
@@ -109,9 +68,9 @@
     <nav class="flex-1 overflow-y-auto flex flex-col px-6 py-4 gap-1 text-lg font-semibold uppercase tracking-wide text-gray-200">
       <a href="index.html" class="py-4 border-b border-white/10 hover:text-white transition">Home</a>
       <a href="private-safe-deposit-box-storage.html" class="py-4 border-b border-white/10 hover:text-white transition">Private Safe Deposit Box Storage</a>
-      <a href="bulk-storage.html" class="py-4 border-b border-white/10 text-gold">Bulk Storage</a>
+      <a href="bulk-storage.html" class="py-4 border-b border-white/10 hover:text-white transition">Bulk Storage</a>
       <a href="bullion-precious-metal.html" class="py-4 border-b border-white/10 hover:text-white transition">Bullion &amp; Precious Metal</a>
-      <a href="ship-to-us.html" class="py-4 border-b border-white/10 hover:text-white transition">Ship to Us</a>
+      <a href="ship-to-us.html" class="py-4 border-b border-white/10 text-gold">Ship to Us</a>
       <a href="secureplus.html" class="py-4 border-b border-white/10 hover:text-white transition">SecurePlus</a>
       <a href="pay-your-bill.html" class="py-4 border-b border-white/10 hover:text-white transition">Pay Your Bill</a>
       <a href="contact.html" class="py-4 border-b border-white/10 hover:text-white transition">Contact</a>
@@ -122,72 +81,84 @@
   <!-- ===== PAGE HEADER ===== -->
   <section class="pt-20 pb-16 border-b border-white/10 bg-black">
     <div class="max-w-5xl mx-auto px-6 pt-16 reveal">
-      <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-5">Bulk Storage</div>
-      <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-3xl">Bulk Storage</h1>
-      <p class="mt-6 text-gray-400 text-lg max-w-2xl">For collections, crated artwork, and valuables too large for a bank — protected the same way every unit in our vault is.</p>
+      <div class="text-gold text-xs font-bold uppercase tracking-[0.25em] mb-5">Ship &amp; Store</div>
+      <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight max-w-3xl">Why Ship &amp; Store with Mountain Vault</h1>
+      <p class="mt-6 text-gray-400 text-lg max-w-2xl">When you need real vault storage for metals, documents, or other valuables — and you can't walk them in yourself — Mountain Vault is built for that. Private vault in Phoenix since 1983: in the mountain, independently owned.</p>
     </div>
   </section>
 
+  <!-- ===== WHAT YOU GET ===== -->
   <section class="max-w-5xl mx-auto px-6 py-20">
     <div class="reveal">
-      <p class="text-gray-300 leading-relaxed text-lg">Collections, crated artwork, and other items too large or valuable for a bank or commercial storage unit — our bulk storage is built for exactly that, with the same 24-hour surveillance and security as every other unit in the facility.</p>
+      <div class="text-gold text-xs font-bold uppercase tracking-wide mb-3">What You Get</div>
+      <p class="text-gray-300 leading-relaxed text-lg">Safe deposit boxes, segregated bullion and bulk storage — your goods stay yours, not mixed with anyone else's — and climate-controlled space for what matters.</p>
     </div>
   </section>
-  <section class="max-w-7xl mx-auto px-6 py-16 reveal">
-    <div class="text-center mb-8">
-      <div class="text-gold text-xs font-bold uppercase tracking-wide">Our Bulk Storage Facility</div>
+
+  <!-- ===== SHIP WHEN YOU CAN'T COME IN ===== -->
+  <section class="max-w-5xl mx-auto px-6 pb-20">
+    <div class="reveal mb-10">
+      <div class="text-gold text-xs font-bold uppercase tracking-wide mb-3">The Process</div>
+      <h2 class="text-2xl md:text-3xl font-extrabold text-white">Ship When You Can't Come In</h2>
     </div>
-    <div class="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-sm overflow-hidden border border-white/10 gallery-frame">
-      <img src="https://images.unsplash.com/photo-1685483749753-0dab7e144794?q=80&w=1600&auto=format&fit=crop" alt="Large secure storage warehouse interior" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:0s;">
-      <img src="https://mountainvault.net/wp-content/uploads/2026/08/crate-b.jpg" alt="Wooden crate storage at Mountain Vault's Phoenix, Arizona facility" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:4s;">
-      <img src="https://images.unsplash.com/photo-1778512925168-e79a0c6dc634?q=80&w=1600&auto=format&fit=crop" alt="Rows of storage units in a climate-controlled facility" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:8s;">
-      <img src="https://images.unsplash.com/photo-1741655262435-4890ab9918fa?q=80&w=1600&auto=format&fit=crop" alt="Crated artwork stored securely" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:12s;">
-      <img src="https://images.unsplash.com/photo-1784462373256-bf6c1f27f00f?q=80&w=1600&auto=format&fit=crop" alt="Organized storage shelving in a secure warehouse" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:16s;">
-      <img src="https://images.unsplash.com/photo-1772678144531-3552c0d39582?q=80&w=1600&auto=format&fit=crop" alt="Oversized items stored in a secure vault space" loading="lazy" class="gallery-img" style="animation-duration:24s; animation-delay:20s;">
-    </div>
-    <div class="flex items-center justify-center gap-2 mt-5">
-      <span class="gallery-dot" style="animation-duration:24s; animation-delay:0s;"></span>
-        <span class="gallery-dot" style="animation-duration:24s; animation-delay:4s;"></span>
-        <span class="gallery-dot" style="animation-duration:24s; animation-delay:8s;"></span>
-        <span class="gallery-dot" style="animation-duration:24s; animation-delay:12s;"></span>
-        <span class="gallery-dot" style="animation-duration:24s; animation-delay:16s;"></span>
-        <span class="gallery-dot" style="animation-duration:24s; animation-delay:20s;"></span>
+    <div class="flex flex-col gap-6">
+      <div class="flex items-start gap-5 reveal">
+        <div class="flex-shrink-0 w-10 h-10 rounded-full border-2 border-gold text-gold font-bold flex items-center justify-center">1</div>
+        <p class="text-gray-300 leading-relaxed pt-2">Contact us before you arrange shipping.</p>
+      </div>
+      <div class="flex items-start gap-5 reveal">
+        <div class="flex-shrink-0 w-10 h-10 rounded-full border-2 border-gold text-gold font-bold flex items-center justify-center">2</div>
+        <p class="text-gray-300 leading-relaxed pt-2">We set up your account, then give shipping instructions.</p>
+      </div>
+      <div class="flex items-start gap-5 reveal">
+        <div class="flex-shrink-0 w-10 h-10 rounded-full border-2 border-gold text-gold font-bold flex items-center justify-center">3</div>
+        <p class="text-gray-300 leading-relaxed pt-2">You send us carrier + tracking.</p>
+      </div>
+      <div class="flex items-start gap-5 reveal">
+        <div class="flex-shrink-0 w-10 h-10 rounded-full border-2 border-gold text-gold font-bold flex items-center justify-center">4</div>
+        <p class="text-gray-300 leading-relaxed pt-2">We photograph the packages as received and send you the photos — we don't open your boxes.</p>
+      </div>
+      <div class="flex items-start gap-5 reveal">
+        <div class="flex-shrink-0 w-10 h-10 rounded-full border-2 border-gold text-gold font-bold flex items-center justify-center">5</div>
+        <p class="text-gray-300 leading-relaxed pt-2">We store them in segregated, non-commingled storage tagged to your account number.</p>
+      </div>
     </div>
   </section>
-  <section class="max-w-7xl mx-auto px-6 py-20">
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="border border-white/10 rounded-sm p-6 reveal">
-        <svg class="w-7 h-7 text-gold mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-        <div class="text-sm font-bold text-white uppercase tracking-wide mb-2">Built Into a Mountain</div>
-        <p class="text-sm text-gray-400 leading-relaxed">Surrounded by steel, concrete, and rock — a theft-proof environment.</p>
-      </div>
-      <div class="border border-white/10 rounded-sm p-6 reveal">
-        <svg class="w-7 h-7 text-gold mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-        <div class="text-sm font-bold text-white uppercase tracking-wide mb-2">Catastrophe Protected</div>
-        <p class="text-sm text-gray-400 leading-relaxed">Shielded from earthquakes, flooding, fire, and electromagnetic pulse.</p>
-      </div>
-      <div class="border border-white/10 rounded-sm p-6 reveal">
-        <svg class="w-7 h-7 text-gold mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-        <div class="text-sm font-bold text-white uppercase tracking-wide mb-2">Climate Controlled</div>
-        <p class="text-sm text-gray-400 leading-relaxed">Consistent humidity and temperature protect every item in your unit.</p>
-      </div>
-      <div class="border border-white/10 rounded-sm p-6 reveal">
-        <svg class="w-7 h-7 text-gold mb-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
-        <div class="text-sm font-bold text-white uppercase tracking-wide mb-2">Armed Guards On Duty</div>
-        <p class="text-sm text-gray-400 leading-relaxed">Cutting-edge surveillance backed by trained, on-site security.</p>
-      </div>
+
+  <!-- ===== INSURANCE ===== -->
+  <section class="max-w-5xl mx-auto px-6 pb-20">
+    <div class="border border-gold/30 bg-gold/5 rounded-sm p-8 reveal">
+      <div class="text-gold text-xs font-bold uppercase tracking-wide mb-3">Insurance</div>
+      <h3 class="text-2xl font-bold text-white">$5,000 SecurePlus Included</h3>
+      <p class="mt-3 text-gray-400 leading-relaxed">Higher coverage available — $500,000+. Underwritten by AXA. <a href="secureplus.html" class="text-gold hover:text-white transition">See how SecurePlus works &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ===== WHY PEOPLE PICK US ===== -->
+  <section class="max-w-5xl mx-auto px-6 pb-20">
+    <div class="reveal">
+      <div class="text-gold text-xs font-bold uppercase tracking-wide mb-4">Why People Pick Us</div>
+      <ul class="space-y-2 text-sm text-gray-400">
+        <li class="flex gap-2"><span class="text-gold">&#10003;</span> A real vault — not a locker</li>
+        <li class="flex gap-2"><span class="text-gold">&#10003;</span> Decades in Phoenix</li>
+        <li class="flex gap-2"><span class="text-gold">&#10003;</span> SecurePlus accreditation</li>
+        <li class="flex gap-2"><span class="text-gold">&#10003;</span> A clear ship-in process</li>
+        <li class="flex gap-2"><span class="text-gold">&#10003;</span> Privacy-minded storage</li>
+        <li class="flex gap-2"><span class="text-gold">&#10003;</span> Dealers and individuals welcome</li>
+      </ul>
     </div>
   </section>
 
   <!-- ===== CTA ===== -->
   <section class="bg-black border-t border-white/10 py-20">
     <div class="max-w-4xl mx-auto px-6 text-center reveal">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Ready to Secure Your Valuables?</h2>
-      <p class="mt-4 text-gray-400">Talk to a vault specialist today — no obligation, no pressure.</p>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-white">Contact Us Before You Ship</h2>
+      <p class="mt-4 text-gray-400">We'll handle the rest.</p>
       <div class="mt-8 flex flex-wrap gap-4 justify-center">
-        <a href="contact.html" class="inline-flex items-center justify-center h-14 px-9 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Get a Quote</a>
-        <a href="tel:6029439796" class="inline-flex items-center justify-center h-14 px-9 border border-white/30 text-white text-sm font-bold uppercase tracking-wide rounded-sm hover:border-white transition">Call 602-943-9796</a>
+        <a href="tel:6029439796" class="inline-flex items-center justify-center h-14 px-9 bg-gold text-black text-sm font-bold uppercase tracking-wide rounded-sm hover:bg-white transition">Call 602.943.9796</a>
+        <a href="mailto:info@mountainvault.net" class="inline-flex items-center justify-center h-14 px-9 border border-white/30 text-white text-sm font-bold uppercase tracking-wide rounded-sm hover:border-white transition">Email info@mountainvault.net</a>
       </div>
+      <p class="mt-6 text-sm text-gray-500">Monday–Friday · 9AM–4PM</p>
     </div>
   </section>
 
